@@ -40,7 +40,7 @@ A lightweight Python desktop application for recording production operation time
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/production-time-logger.git
+git clone https://github.com/yourusername/Production-Time-Logger.git
 cd production-time-logger
 ```
 
