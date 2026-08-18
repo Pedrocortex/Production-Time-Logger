@@ -28,7 +28,9 @@ def atualizar_dia(tempo,periodo, ultima_linha, situacao,wb,aba,nome_arquivo):
     wb.save(nome_arquivo)
     
 def novo_dia(tempo,periodo, ultima_linha, situacao,wb,aba,Dia_hoje,nome_arquivo):
-
+     if aba.cell(row=ultima_linha, column=1).value is None:
+            ultima_linha = ultima_linha - 5
+         
     dia=aba.cell(row=ultima_linha+1, column=1, value=Dia_hoje)
     dia.alignment= Alignment(horizontal="center", vertical="center")
     dia.fill= PatternFill(start_color="B5EDBA", end_color="B5EDBA", fill_type="solid")
