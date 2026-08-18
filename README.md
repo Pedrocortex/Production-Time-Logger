@@ -64,8 +64,8 @@ This changes the complexity of **finding the insertion position** from **O(n)** 
 
 ```
 .
-├── interfacEst.py      # User interface
-├── guuar.py            # Excel data management
+├── interface.py      # User interface
+├── Inserção.py            # Excel data management
 ├── Dados1.xlsx         # Data storage
 └── README.md
 ```
