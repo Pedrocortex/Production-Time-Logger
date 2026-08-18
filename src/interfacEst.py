@@ -16,19 +16,21 @@ def atualiza():
 
     return wb,aba,nome_arquivo, 
 
- 
+
 def enviar_dados(periodo,tempo, situacao,janela):    
     wb,aba,nome_arquivo = atualiza()
-    linha_busca = wb.active.max_row 
-    ultima_linha = max(1,linha_busca -4)
-    data_celula = aba.cell(row=ultima_linha, column=1).value
+    
+    ultima_linha = aba["M1"].value
+    data_celula = aba.cell(row=ultima_linha-4, column=1).value
+    
     if not tempo:
         messagebox.showwarning("Aviso", "Por favor, digite o Tempo!")
         return
     if Dia_hoje == str(data_celula):
-        atualizar_dia(tempo, periodo, linha_busca,situacao,wb,aba,nome_arquivo)
+        atualizar_dia(tempo, periodo, ultima_linha,situacao,wb,aba,nome_arquivo)
     else:
-        novo_dia(tempo,periodo, linha_busca,situacao,wb,aba,Dia_hoje,nome_arquivo)
+        
+        novo_dia(tempo,periodo, ultima_linha,situacao,wb,aba,Dia_hoje,nome_arquivo)
 
     janela.destroy()
     switcher=True
