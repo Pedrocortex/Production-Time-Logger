@@ -19,6 +19,41 @@ A lightweight Python desktop application for recording production operation time
 - Stores all data in an Excel workbook
 - Color-coded shifts for better visualization
 
+## Performance Optimization
+
+The data handling logic was optimized by eliminating unnecessary linear searches when determining the insertion position.
+
+### Before
+
+The program previously relied on `max_row` and iterated through columns to find the next available position:
+
+* Determining the insertion point required additional calculations.
+* Finding the next column could require traversing existing columns, resulting in **O(n)** complexity.
+
+### After
+
+The current implementation stores the last relevant row in cell `M1` and retrieves it directly:
+
+```python
+ultima_linha = aba["M1"].value
+```
+
+The next position is then calculated directly from the stored value:
+
+```python
+prog = aba.cell(row=ultima_linha, column=1).value + 1
+```
+
+This changes the complexity of **finding the insertion position** from **O(n)** to **O(1)**.
+
+### Impact
+
+| Operation               |                      Before |     After |
+| ----------------------- | --------------------------: | --------: |
+| Determine last position |                        O(n) |  **O(1)** |
+| Find next column        |                    **O(n)** |  **O(1)** |
+| Insert/update data      |                   Unchanged | Unchanged |
+
 ## Technologies
 
 - Python 3
